@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard Integrado - Prácticas Web</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+    <div class="contenedor-principal">
+        <nav class="tabs-container">
+            <button data-tab="tab-tareas" class="tab-btn activo">📝 Lista de Tareas</button>
+            <button data-tab="tab-usuarios" class="tab-btn">👥 Red de Usuarios</button>
+            <button data-tab="tab-componentes" class="tab-btn">🧩 Componentes UI</button>
+        </nav>
+
+        <section data-panel="tab-tareas" class="panel activo">
+            <h1 id="titulo" data-count="0">Mi Lista de Tareas (0)</h1>
+            <div class="controles-tareas">
+                <input type="text" id="nuevaTarea" placeholder="Escribe una nueva tarea...">
+                <button id="btnAgregar" class="btn-primario">Agregar</button>
+            </div>
+            <ul id="listaTareas"></ul>
+        </section>
+
+        <section data-panel="tab-usuarios" class="panel">
+            <header class="dashboard-header">
+                <h1>Directorio de Usuarios</h1>
+                <div id="estado"></div>
+            </header>
+            <div id="controles">
+                <input type="search" id="busqueda" placeholder="Buscar usuario por nombre...">
+                <button id="btnCargar" class="btn-primario">Cargar Usuarios</button>
+            </div>
+            <div id="spinner" hidden>
+                <div class="loader"></div>
+                <p>Cargando datos asíncronos...</p>
+            </div>
+            <div id="contenedor-usuarios" class="grid-usuarios"></div>
+        </section>
+
+        <section data-panel="tab-componentes" class="panel">
+            <h1>Componentes Interactivos</h1>
+            
+            <div class="grid-componentes">
+                <div class="mi-acordeon componente-caja">
+                    <h2>Preguntas Frecuentes</h2>
+                    <div class="acordeon-item">
+                        <div class="acordeon-header">¿Qué es el DOM? <span>▼</span></div>
+                        <div class="acordeon-cuerpo">
+                            <div class="cuerpo-interno">Es el Modelo de Objetos del Documento, una interfaz de programación para HTML.</div>
+                        </div>
+                    </div>
+                    <div class="acordeon-item">
+                        <div class="acordeon-header">¿Para qué sirve Fetch? <span>▼</span></div>
+                        <div class="acordeon-cuerpo">
+                            <div class="cuerpo-interno">Permite hacer peticiones HTTP asíncronas para obtener datos de un servidor sin recargar la página.</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="componente-caja centrado">
+                    <h2>Ventana Modal</h2>
+                    <button class="btn-primario" data-modal data-titulo="¡Hola desde el Modal!" data-contenido="<p>Este es un componente dinámico que bloquea el fondo y captura la atención del usuario. Puedes cerrarlo con la 'X', haciendo clic afuera o presionando la tecla Escape.</p>">
+                        Abrir Modal Dinámico
+                    </button>
+                </div>
+            </div>
+
+            <div class="mi-carrusel componente-caja">
+                <div class="slide activo" style="background-color: #1F3864;"><h2>Slide 1: Manipulación del DOM</h2></div>
+                <div class="slide" style="background-color: #2E5FA3;"><h2>Slide 2: Asincronía y Promesas</h2></div>
+                <div class="slide" style="background-color: #E8A020;"><h2>Slide 3: Componentes e Interfaces</h2></div>
+            </div>
+        </section>
+    </div>
+
+    <div id="modal-principal" class="modal">
+        <div class="modal-overlay"></div>
+        <div class="modal-contenido">
+            <span class="modal-cerrar">✖</span>
+            <h2 class="modal-titulo"></h2>
+            <div class="modal-cuerpo"></div>
+        </div>
+    </div>
+
+    <script src="{{ url_for('static', filename='components.js') }}"></script>
+    <script src="{{ url_for('static', filename='app.js') }}"></script>
+    <script type="module" src="{{ url_for('static', filename='dashboard.js') }}"></script>
+
+</body>
+</html>

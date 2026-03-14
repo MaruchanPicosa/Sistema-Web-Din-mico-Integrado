@@ -1,0 +1,147 @@
+/* Variables y Reset */
+:root {
+    --primario: #1F3864;
+    --secundario: #2E5FA3;
+    --acento: #E8A020;
+    --exito: #27AE60;
+    --peligro: #e74c3c;
+    --fondo: #f4f7f6;
+    --texto: #333;
+    --blanco: #ffffff;
+}
+
+body {
+    font-family: 'Calibri', sans-serif;
+    background-color: var(--fondo);
+    color: var(--texto);
+    margin: 0;
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+}
+
+.contenedor-principal {
+    width: 100%;
+    max-width: 1000px;
+    background: var(--blanco);
+    border-radius: 12px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    overflow: hidden;
+}
+
+/* Tabs Navegación */
+.tabs-container {
+    display: flex;
+    background-color: #e0e6ed;
+    border-bottom: 2px solid var(--secundario);
+}
+
+.tab-btn {
+    flex: 1;
+    padding: 15px;
+    border: none;
+    background: none;
+    font-size: 16px;
+    font-weight: bold;
+    color: #666;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.tab-btn:hover { background-color: rgba(46, 95, 163, 0.1); }
+.tab-btn.activo { background-color: var(--primario); color: var(--blanco); }
+
+.panel { display: none; padding: 30px; }
+.panel.activo { display: block; animation: fadeIn 0.4s ease; }
+
+@keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+
+/* Botones y Entradas */
+.btn-primario {
+    background-color: var(--exito);
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background 0.2s;
+}
+.btn-primario:hover { background-color: #219653; }
+
+input[type="text"], input[type="search"] {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 16px;
+    width: 100%;
+    max-width: 300px;
+}
+
+/* Práctica 1: Tareas */
+#titulo { cursor: pointer; transition: color 0.3s; text-align: center; }
+.controles-tareas { display: flex; justify-content: center; gap: 10px; margin-bottom: 20px; }
+#listaTareas { list-style: none; padding: 0; max-width: 500px; margin: 0 auto; }
+#listaTareas li {
+    background: var(--fondo);
+    margin: 8px 0;
+    padding: 12px 20px;
+    border-radius: 6px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+}
+.completada span { text-decoration: line-through; color: #888; }
+.btn-eliminar { background-color: var(--peligro); color: white; border: none; padding: 5px 10px; border-radius: 4px; cursor: pointer; }
+
+/* Práctica 2: Dashboard Fetch */
+.dashboard-header { text-align: center; margin-bottom: 20px; }
+#controles { display: flex; justify-content: center; gap: 10px; margin-bottom: 30px; }
+.grid-usuarios { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 20px; }
+.tarjeta-usuario {
+    background: var(--blanco);
+    padding: 20px;
+    border-radius: 8px;
+    border: 1px solid #eee;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+    transition: transform 0.2s;
+}
+.tarjeta-usuario:hover { transform: translateY(-5px); box-shadow: 0 6px 12px rgba(0,0,0,0.1); }
+.tarjeta-usuario h3 { color: var(--primario); margin-top: 0; }
+.btn-posts { background-color: var(--acento); color: white; border: none; padding: 8px; width: 100%; border-radius: 4px; cursor: pointer; margin-top: 10px; }
+.posts-container { margin-top: 15px; font-size: 0.9em; color: #555; background: var(--fondo); padding: 10px; border-radius: 4px; }
+
+/* Práctica 3: Componentes UI */
+.grid-componentes { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-bottom: 20px; }
+.componente-caja { background: var(--fondo); padding: 20px; border-radius: 8px; }
+.centrado { display: flex; flex-direction: column; align-items: center; justify-content: center; }
+
+/* Acordeón */
+.acordeon-item { border: 1px solid #ddd; margin-bottom: 5px; border-radius: 4px; background: var(--blanco); overflow: hidden; }
+.acordeon-header { padding: 15px; cursor: pointer; font-weight: bold; display: flex; justify-content: space-between; }
+.acordeon-header:hover { background: #f9f9f9; }
+.acordeon-cuerpo { max-height: 0; overflow: hidden; transition: max-height 0.3s ease-out; }
+.cuerpo-interno { padding: 15px; border-top: 1px solid #ddd; }
+.acordeon-item.abierto .acordeon-header { background: #e0e6ed; color: var(--primario); }
+
+/* Modal */
+.modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 1000; justify-content: center; align-items: center; }
+.modal.visible { display: flex; }
+.modal-overlay { position: absolute; width: 100%; height: 100%; background: rgba(0,0,0,0.6); backdrop-filter: blur(2px); }
+.modal-contenido { position: relative; background: var(--blanco); padding: 30px; border-radius: 8px; min-width: 400px; box-shadow: 0 10px 25px rgba(0,0,0,0.2); animation: fadeIn 0.3s ease; }
+.modal-cerrar { float: right; cursor: pointer; font-size: 20px; color: #888; }
+.modal-cerrar:hover { color: var(--peligro); }
+
+/* Carrusel */
+.mi-carrusel { position: relative; height: 250px; overflow: hidden; border-radius: 8px; margin-top: 20px;}
+.slide { position: absolute; width: 100%; height: 100%; opacity: 0; transition: opacity 0.5s ease-in-out; display: flex; align-items: center; justify-content: center; color: white; text-align: center; }
+.slide.activo { opacity: 1; z-index: 1; }
+
+/* Utilidades */
+.estado-info { color: var(--secundario); font-weight: bold; }
+.estado-ok { color: var(--exito); font-weight: bold; }
+.estado-error { color: var(--peligro); font-weight: bold; }
+#spinner { text-align: center; margin: 20px 0; }
+.loader { border: 4px solid #f3f3f3; border-top: 4px solid var(--secundario); border-radius: 50%; width: 30px; height: 30px; animation: spin 1s linear infinite; margin: 0 auto; }
+@keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
